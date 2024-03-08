@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="littlebot">
+  <link name="base_link">
+  </link>
+
+  <link name="wheel1_link">
+    <inertial>
+      <origin xyz="0 0 0.02865" rpy="0 0 0" />
+      <mass value="0.2" />
+      <inertia
+        ixx="0.00135"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="0.00135"
+        iyz="0.00000"
+        izz="0.00210" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel1_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel2_link">
+    <inertial>
+      <origin xyz="0 0 0.02865" rpy="0 0 0" />
+      <mass value="0.2" />
+      <inertia
+        ixx="0.00135"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="0.00135"
+        iyz="0.00000"
+        izz="0.00210" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel3_link">
+    <inertial>
+      <origin xyz="0 0.0 -0.035" rpy="0 0 0" />
+      <mass
+        value="0.2" />
+      <inertia
+        ixx="0.00135"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="0.00135"
+        iyz="0.00000"
+        izz="0.00210" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel3_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel4_link">
+    <inertial>
+      <origin xyz="0 0.0 -0.035" rpy="0 0 0" />
+      <mass
+        value="0.2" />
+      <inertia
+        ixx="0.00135"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="0.00135"
+        iyz="0.00000"
+        izz="0.00210" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel4_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/wheel4_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="chassis_link">
+    <inertial>
+      <origin
+        xyz="-0.13003 0.0065063 0.052046"
+        rpy="0 0 0" />
+      <mass
+        value="2.6" />
+      <inertia
+        ixx="0.0062135"
+        ixy="-0.00001"
+        ixz="0.00001"
+        iyy="0.015216"
+        iyz="-0.00001"
+        izz="0.012023" />
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/chassis_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.25 0.75 0.5 1" />
+      </material>
+    </visual>
+    <!-- Collision not included -->
+  </link>
+
+  <link name="GPS_link">
+    <!-- Inertial not included -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://lb_description/meshes/GPS_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.25 0.25 0.25 1" />
+      </material>
+    </visual>
+    <!-- Collision not included -->
+  </link>
+
+  
+
+  <joint name="chassis_joint" type="fixed">
+    <origin
+      xyz="0.058 -0.13 0.12"
+      rpy="0 0 -1.5708" />
+    <parent link="base_link" />
+    <child link="chassis_link" />
+  </joint>
+
+  <joint name="GPS_joint" type="fixed">
+    <origin
+      xyz="-0.13 -0.1426 0.1"
+      rpy="1.5708 0 0" />
+    <parent link="chassis_link" />
+    <child link="GPS_link" />
+  </joint>
+
+  <joint name="wheel1_joint" type="continuous">
+    <origin xyz="0 0.06218 -0.055655" rpy="1.5708 0.66623 1.5708" />
+    <parent link="chassis_link" />
+    <child link="wheel1_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+
+  <joint name="wheel2_joint" type="continuous">
+    <origin xyz="0 -0.17282 -0.055655" rpy="-1.5708 0.37374 -1.5708" />
+    <parent link="chassis_link" />
+    <child link="wheel2_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <joint name="wheel3_joint" type="continuous">
+    <origin xyz="-0.25335 -0.17282 -0.055655" rpy="1.5708 0.3938 -1.5708" />
+    <parent link="chassis_link" />
+    <child link="wheel3_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="wheel4_joint" type="continuous">
+    <origin xyz="-0.25335 0.06218 -0.055655" rpy="1.5708 0.66623 1.5708" />
+    <parent link="chassis_link" />
+    <child link="wheel4_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+
+  <!-- Import lb ros2_control description 
+  <xacro:include filename="$(find lb_description)/ros2_control/lb_ros2_control.xacro" />
+  <xacro:lb_ros2_control name="littlebot" /> -->
+
+  <ros2_control name="lb_base_controller" type="system">
+    <hardware>
+      <plugin>LBHardware</plugin>
+    </hardware>
+    <joint name="wheel1_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel2_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel3_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="wheel4_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+</robot>
